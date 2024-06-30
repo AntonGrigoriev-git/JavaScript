@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_9</title>
+    <script>
+        let number = prompt("Введите трехзначное число");
+
+        // В случае ввода чисел оканчиваающих на 0 или 00, данный вариант отображает корректо))
+        // let firstNum = number.charAt(0);
+        // let secondNum = number.charAt(1);
+        // let thirdNum = number.charAt(2);
+        // let reverseNum = thirdNum + secondNum + firstNum;
+
+        let firstNum = Math.floor(number / 100);
+        let secondNum = Math.floor(number / 10) % 10;
+        let thirdNum = number % 10;
+        let reverseNum = thirdNum * 100 + secondNum * 10 + firstNum;
+        alert(reverseNum);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
