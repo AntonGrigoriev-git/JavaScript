@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_7</title>
+    <script>
+        let purchaseAmount = parseInt(prompt("Введите сумму покупки"));
+        let discount;
+        if(purchaseAmount >= 200 && purchaseAmount < 300) {
+            discount = purchaseAmount * 0.97;
+        } else if(purchaseAmount >= 300 && purchaseAmount < 500) {
+            discount = purchaseAmount * 0.95;
+        } else if(purchaseAmount >= 500) {
+            discount = purchaseAmount * 0.93;
+        }
+
+        alert(`Сумма к оплате ${discount}`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

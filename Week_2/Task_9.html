@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_9</title>
+    <script>
+         function quiz() {
+            let score = 0;
+
+            let answer1 = prompt("Вопрос 1: Какая планета самая близкая к солнцу?\n1. Венера\n2. Меркурий\n3. Марс");
+            if (answer1 === "2") {
+                score += 2;
+            }
+
+            let answer2 = prompt("Вопрос 2: Сколько материков на Земле?\n1. 6\n2. 7\n3. 8");
+            if (answer2 === "1") {
+                score += 2;
+            }
+
+            let answer3 = prompt("Вопрос 3: Какая молекула вызывает ржавчину на металлах?\n1. H2O\n2. CO2\n3. O2");
+            if (answer3 === "3") {
+                score += 2;
+            }
+
+            alert(`Вы набрали ${score} балла(ов)`);
+        }
+    </script>
+</head>
+<body onload="quiz()">
+    
+</body>
+</html>

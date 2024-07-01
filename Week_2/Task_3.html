@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_3</title>
+    <script>
+
+        let number = parseInt(prompt("Введите трехзначное число"));
+
+        let firstNum = Math.floor(number / 100);
+        let secondNum = Math.floor(number / 10) % 10;
+        let thirdNum = number % 10;
+
+        if(firstNum === secondNum || firstNum === thirdNum || secondNum === thirdNum) {
+            alert("Duplicate");
+        } else {
+            alert("Not duplicates");
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

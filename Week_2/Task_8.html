@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_8</title>
+    <script>
+        let circumference = parseInt(prompt("Введите длину окружности"));
+        let perimeter = parseInt(prompt("Введите периметр квадрата"));
+        let radius = circumference / (2 * Math.PI);
+        let diameter = 2 * radius;
+        let sideOfSquare = perimeter / 4;
+        if(diameter <= sideOfSquare) {
+            alert("Окружность поместится в квадрат");
+        } else {
+            alert("Вне габаритов");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

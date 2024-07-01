@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_4</title>
+    <script>
+        let year = parseInt(prompt("Введите год"));
+        let leapYear = false;
+
+        if((year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0)) {
+            leapYear = true;
+        }
+
+        if(leapYear) {
+            alert(`${year} год високосный`);
+        } else {
+            alert(`${year} год невисокосный`);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

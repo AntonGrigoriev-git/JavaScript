@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_10</title>
+    <script>
+         function nextDate() {
+            let day = parseInt(prompt("Введите день (1-31)"));
+            let month = parseInt(prompt("Введите месяц (1-12)")) - 1;
+            let year = parseInt(prompt("Введите год"));
+
+            let date = new Date(year, month, day);
+
+            date.setDate(date.getDate() + 1);
+
+            let nextDay = date.getDate();
+            let nextMonth = date.getMonth() + 1;
+            let nextYear = date.getFullYear();
+
+            alert(`Следующая дата ${nextDay}/${nextMonth}/${nextYear}`);
+        }
+    </script>
+</head>
+<body onload="nextDate()">
+    
+</body>
+</html>

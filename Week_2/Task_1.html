@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_1</title>
+    <script>
+        let age = parseInt(prompt("Введите ваш возраст"));
+        let kid = age >= 0 && age < 12;
+        let teenager = age >= 12 && age < 18;
+        let adult = age >= 18 && age < 60;
+        let pensioner = age >= 60;
+
+        if(kid) {
+            alert("You're a kid");
+        } else if(teenager) {
+            alert("You're a teenager");
+        } else if(adult) {
+            alert("You're an adult");
+        } else if(pensioner) {
+            alert("You're a pensioner");
+        } else {
+            alert("error");
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
