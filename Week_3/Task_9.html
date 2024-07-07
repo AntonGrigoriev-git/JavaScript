@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_9</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Таблица умножения</h2>
+    <table id="multiplicationTable"></table>
+
+    <script>
+        function createMultiplicationTable() {
+            const table = document.getElementById('multiplicationTable');
+            const headerRow = document.createElement('tr');
+            
+            const thEmpty = document.createElement('th');
+            headerRow.appendChild(thEmpty);
+
+            for (let i = 2; i <= 9; i++) {
+                const th = document.createElement('th');
+                th.textContent = i;
+                headerRow.appendChild(th);
+            }
+            table.appendChild(headerRow);
+
+            for (let j = 1; j <= 10; j++) {
+                const row = document.createElement('tr');
+                const tdHeader = document.createElement('td');
+                tdHeader.textContent = j;
+                row.appendChild(tdHeader);
+
+            for (let i = 2; i <= 9; i++) {
+                const td = document.createElement('td');
+                td.textContent = `${i} x ${j} = ${i * j}`;
+                row.appendChild(td);
+            }
+                table.appendChild(row);
+            }
+        }
+
+        createMultiplicationTable();
+    </script>
+    
+</body>
+</html>

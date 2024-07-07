@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_2</title>
+    <script>
+        let num1 = parseInt(prompt("Введите первое число"));
+        let num2 = parseInt(prompt("Введите второе число"));
+
+        do {
+            let remainder = num1 % num2;
+            num1 = num2;
+            num2 = remainder;
+        } while (num2 !== 0);
+
+        alert(`НОД равен ${num1}`);
+      
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

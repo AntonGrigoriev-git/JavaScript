@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_8</title>
+    <script>
+        let daysOfWeek = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"];
+        let currentDay = 0;
+
+        while (true) {
+            alert("День недели: " + daysOfWeek[currentDay]);
+            if (!confirm("Хотите увидеть следующий день?")) {
+                break;
+            }
+            currentDay = (currentDay + 1) % daysOfWeek.length;
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

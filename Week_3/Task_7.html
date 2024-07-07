@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_7</title>
+    <script>
+        let number = prompt("Введите число");
+        let shift = parseInt(prompt("Насколько сдвинуть число?"));
+        let length = number.length;
+        let shiftNum = shift % length;
+        let result = "";
+
+        for (let i = shiftNum; i < length; i++) {
+                result += number[i];
+        }
+
+        for (let i = 0; i < shiftNum; i++) {
+                result += number[i];
+        }
+
+        alert(result);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

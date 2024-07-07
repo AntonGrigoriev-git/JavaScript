@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Task_5</title> 
+    <script> 
+        function collectNumbers() { 
+            let numbers = []; 
+            for(let i = 0; i < 10; i++) { 
+                let tenNum = prompt(`Введите число ${i + 1} из 10:`); 
+                numbers.push(Number(tenNum)); 
+            } 
+            return numbers; 
+        }
+
+        function analyzeNumbers(numbers) {
+            let positiveCount = 0;
+            let negativeCount = 0;
+            let zeroCount = 0;
+            let evenCount = 0;
+            let oddCount = 0;
+
+            for (let i = 0; i < numbers.length; i++) {
+                if (numbers[i] > 0) {
+                    positiveCount++;
+                } else if (numbers[i] < 0) {
+                    negativeCount++;
+                } else {
+                    zeroCount++;
+                }
+
+                if (numbers[i] % 2 === 0) {
+                    evenCount++;
+                } else {
+                    oddCount++;
+                }
+            }
+
+            document.write(`${negativeCount} отрицательных чисел<br>`);
+            document.write(`${positiveCount} положительных чисел<br>`);
+            document.write(`${zeroCount} нулей<br>`);
+            document.write(`${evenCount} четных чисел<br>`);
+            document.write(`${oddCount} нечетных чисел<br>`);
+        }
+
+        window.onload = function() {
+            let numbers = collectNumbers();
+            analyzeNumbers(numbers);
+        }
+ 
+    </script> 
+</head> 
+<body> 
+     
+</body> 
+</html>
