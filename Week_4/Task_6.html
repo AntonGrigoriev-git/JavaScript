@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_6</title>
+    <script>
+        let minNum = parseInt(prompt("Enter the min number"));
+        let maxNum = parseInt(prompt("Enter the max number"));
+
+        function perfectNumber(num) {
+            let sum = 0;
+            for(let i = 1; i <= num / 2; i++) {
+                if(num % i === 0) {
+                    sum += i;
+                }
+            }
+            return sum === num;
+        }
+
+        function range(min, max) {
+            const perfectNumbers = [];
+            for(let i = min; i <= max; i++) {
+                if(perfectNumber(i)) {
+                    perfectNumbers.push(i);
+                }
+            }
+            return perfectNumbers;
+        }
+
+        let result = range(minNum, maxNum);
+        alert(result.join(", "));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

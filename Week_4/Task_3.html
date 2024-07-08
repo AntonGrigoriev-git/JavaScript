@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_3</title>
+    <script>
+        let numberFirst = parseInt(prompt("Enter the first digit"));
+        let numberSecond = parseInt(prompt("Enter the second digit"));
+        let numberThird = parseInt(prompt("Enter the third digit"));
+        let numberString = "";
+
+        function combineDigits(first, second, third) {
+            const digits = [first, second, third];
+            for(let i = 0; i < digits.length; i++) {
+                numberString += digits[i];
+            }
+            return numberString;
+        }
+
+        alert(combineDigits(numberFirst, numberSecond, numberThird));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

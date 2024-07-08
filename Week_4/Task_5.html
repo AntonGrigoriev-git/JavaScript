@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasl_5</title>
+    <script>
+        let number = parseInt(prompt("Enter a number"));
+
+        function perfectNumber(num) {
+            let sum = 0;
+            for(let i = 1; i <= num / 2; i++) {
+                if(num % i === 0) {
+                    sum += i;
+                }
+            }
+            return sum === num;
+        }
+
+        let result = perfectNumber(number);
+        if(result === true) {
+            alert("The number is perfect");
+        } else {
+            alert("The number is imperfect")
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

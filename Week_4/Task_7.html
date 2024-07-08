@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_7</title>
+    <script>
+        let hours = parseInt(prompt("Enter the hours"));
+        let minutes = parseInt(prompt("Enter the minutes"));
+        let seconds = parseInt(prompt("Enter the seconds"));
+
+        function getTime(hour, minute, second) {
+            if (isNaN(hour) || hour < 0 || hour >= 24) {
+                hour = '00';
+            } else {
+                hour = String(hour).padStart(2, '0');
+            }
+
+            if (isNaN(minute) || minute < 0 || minute >= 60) {
+                minute = '00';
+            } else {
+                minute = String(minute).padStart(2, '0');
+            }
+
+            if (isNaN(second) || second < 0 || second >= 60) {
+                second = '00';
+            } else {
+                second = String(second).padStart(2, '0');
+            }
+            return hour + ":" + minute + ":" + second;
+        }
+
+        let result = getTime(hours, minutes, seconds);
+        alert(result);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

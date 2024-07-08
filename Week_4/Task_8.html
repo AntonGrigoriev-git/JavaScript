@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_8</title>
+    <script>
+        let hours = parseInt(prompt("Enter the hours"));
+        let minutes = parseInt(prompt("Enter the minutes"));
+        let seconds = parseInt(prompt("Enter the seconds"));
+
+        function getSeconds(hour, minute, second) {
+            if (isNaN(hours) || isNaN(minutes) || isNaN(seconds)) {
+                return -1;
+            }
+
+            if (hours < 0 || hours >= 24 || minutes < 0 || minutes >= 60 || seconds < 0 || seconds >= 60) {
+                return -1;
+            }
+
+            let totalSeconds = 3600 * hour + 60 * minute + second;
+            return totalSeconds;
+        }
+
+        let result = getSeconds(hours, minutes, seconds);
+        if (result !== -1) {
+            alert(`Total seconds ${result}`);
+        } else {
+            alert("Invalid input. Please enter valid time values.");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

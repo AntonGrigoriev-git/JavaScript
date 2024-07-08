@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_9</title>
+    <script>
+        let totalSeconds = parseInt(prompt("Enter the seconds"));
+
+        function getTime(totalSeconds) {
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+
+            let hoursStr = String(hours).padStart(2, '0');
+            let minutesStr = String(minutes).padStart(2, '0');
+            let secondsStr = String(seconds).padStart(2, '0');
+
+            return `${hoursStr}:${minutesStr}:${secondsStr}`;
+        }
+
+        let result = getTime(totalSeconds);
+        alert(result);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
