@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_2</title>
+    <script>
+        let arrayTenElements = Array.from({length: 10}, () => Math.floor(Math.random() * 100));
+        let arrayFiveElements = Array.from({length: 5}, () => Math.floor(Math.random() * 100));
+
+        // Проверка:
+        // let arrayTenElements = [1, 1, 3, 4, 5, 6, 7, 8, 9, 10];
+        // let arrayFiveElements = [5, 6, 7, 11, 12];
+
+        function displayCombinedArrays(arrTen, arrFive) {
+            let combined = arrTen.concat(arrFive);
+            let uniqueCombined = Array.from(new Set(combined));
+            document.write(`Unique combination of arrays: ${uniqueCombined.join(", ")}<br>`);
+        }
+
+        function displayCommonNumbers(arrTen, arrFive) {
+            let setTen = new Set(arrTen);
+            let setFive = new Set(arrFive);
+            let commonNumbers = [];
+
+            setTen.forEach(num => {
+                if (setFive.has(num)) {
+                    commonNumbers.push(num);
+                }
+            });
+            
+            let combined = arrTen.concat(arrFive);
+            let count = {};
+            combined.forEach(num => {
+                count[num] = (count[num] || 0) + 1;
+            });
+
+            let duplicates = Object.keys(count).filter(num => count[num] > 1).map(Number);
+            
+            document.write(`Common numbers: ${duplicates.join(", ")}<br>`);
+        }
+
+        function displayUniqueElements(arrTen, arrFive) {
+            let setArrFive = new Set(arrFive);
+            let uniqueElements = arrTen.filter(element => !setArrFive.has(element));
+            document.write(`Unique elements: ${uniqueElements.join(", ")}<br>`);
+        }
+
+        displayCombinedArrays(arrayTenElements, arrayFiveElements);
+        displayCommonNumbers(arrayTenElements, arrayFiveElements);
+        displayUniqueElements(arrayTenElements, arrayFiveElements);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

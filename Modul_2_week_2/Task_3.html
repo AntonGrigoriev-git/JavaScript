@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_3</title>
+    <script>
+        let fruitsArray = ["Mango", "Papaya", "Apple", "Orange", "Lemon"];
+        let sortListFruits = fruitsArray.sort();
+
+        function displayListFruits(fruitsArray) {
+            document.write("<ul>");
+            for(let fruit of fruitsArray) {
+                document.write(`<li>${fruit}</li>`)
+            }
+            document.write("</ul>");
+        }
+        
+        function searchFruits(fruitsArray) {
+            let search = prompt("Write the name of the fruit").toLowerCase();
+            for(let i = 0; i < fruitsArray.length; i++) {
+                if(fruitsArray[i].toLowerCase() === search) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        displayListFruits(sortListFruits);
+        let index = searchFruits(sortListFruits);
+        document.write(`<p>Index: ${index}</p>`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

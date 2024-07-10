@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_1</title>
+    <script>
+        let array = Array.from({length: 10}, () => Math.floor(Math.random() * 100));
+
+        function displayRandomNumbers(arr) {
+            document.write(`Ten random numbers: ${arr.join(", ")}<br>`);
+        }
+
+        function displayEvenNumbers(arr) {
+            let even = [];
+            for(let i = 0; i < arr.length; i++) {
+                if(arr[i] % 2 === 0) {
+                    even.push(arr[i]);;
+                }
+            }
+            document.write(`Even numbers: ${even.join(", ")}<br>`);
+        }
+
+        function displaySumNumbers(arr) {
+            let sum = 0;
+            for(let i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            document.write(`Sum numbers: ${sum}<br>`);
+        }
+
+        function displayMaxNumber(arr) {
+            let max = 0;
+            for(let i = 0; i < arr.length; i++) {
+                if(arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            document.write(`Max number: ${max}<br>`);
+        }
+
+        function displayAddNumber(arr) {
+            arr.splice(0, 0, 100);
+            document.write(`Add number: ${arr.join(", ")}<br>`);
+        }
+
+        function displayRemovedNumber(arr) {
+            arr.splice(0, 1);
+            document.write(`Removed number: ${arr.join(", ")}<br>`);
+        }
+
+        displayRandomNumbers(array);
+        displayEvenNumbers(array);
+        displaySumNumbers(array);
+        displayMaxNumber(array);
+        displayAddNumber(array);
+        displayRemovedNumber(array);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
