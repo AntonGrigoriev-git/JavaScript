@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_1</title>
+    <script>
+        function PrintMachine(size, color, family) {
+            this.fontSize = size;
+            this.fontColor = color;
+            this.fontFamily = family;
+            
+            this.print = function(text) {
+                let output = `<p style = "color: ${this.fontColor};
+                font-family: ${this.fontFamily};
+                font-size: ${this.fontSize}">${text}</p>`;
+                document.write(output);
+            }
+        }
+
+        let printMachine = new PrintMachine("30px", "blue", "Comic Sans MS");
+        printMachine.print("Comic Sans MS");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

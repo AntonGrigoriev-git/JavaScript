@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_2</title>
+    <script>
+        class News {
+            constructor(title, text, tags, publishDate) {
+                this.title = title;
+                this.text = text;
+                this.tags = tags;
+                this.publishDate = new Date(publishDate.split(".").reverse().join("-"));
+            }
+
+            print() {
+                const now = new Date();
+                const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+                const publishDate = new Date(this.publishDate.getFullYear(), 
+                this.publishDate.getMonth(), this.publishDate.getDate());
+
+                const differenceTime = todayDate - publishDate;
+                const differenceDays = Math.floor(differenceTime / (1000 * 60 * 60 * 24));
+
+                let formattedDate = "";
+                if (differenceDays === 0) {
+                    formattedDate = "Today";
+                } else if (differenceDays < 7) {
+                    formattedDate = `${differenceDays} day(s) ago`;
+                } else {
+                    const day = this.publishDate.getDate().toString().padStart(2, "0");
+                    const month = (this.publishDate.getMonth() + 1).toString().padStart(2, "0");
+                    const year = this.publishDate.getFullYear();
+                    formattedDate = `${day}.${month}.${year}`;
+                }
+
+                let tagsString = this.tags.map(tag => `#${tag}`).join(" ");
+
+                document.write(`<h1>${this.title}</h1>\n`);
+                document.write(`<p>${formattedDate}</p>\n`);
+                document.write(`<p>${this.text}</p>\n`);
+                document.write(tagsString);
+            }
+        }
+
+        const news = new News(
+            "What is Lorem ipsum dolor?",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, veniam! Adipisci iste non et ullam sunt necessitatibus, aspernatur amet quasi consequatur praesentium dicta quibusdam, veritatis nobis, nemo distinctio tempora mollitia.",
+            ["lorem", "ipsum", "dolor"],
+            "11.07.2024"
+        );
+
+        news.print();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
