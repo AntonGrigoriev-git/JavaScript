@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_2</title>
+</head>
+<body>
+    <script>
+        class ExtendedDate extends Date {
+            constructor(year, month, day) {
+                super(year, month, day);
+            }
+
+            getDateAsText() {
+                const days = [
+                    "первое", "второе", "третье", "четвертое", "пятое", "шестое", "седьмое", "восьмое", "девятое", "десятое",
+                    "одиннадцатое", "двенадцатое", "тринадцатое", "четырнадцатое", "пятнадцатое", "шестнадцатое", "семнадцатое",
+                    "восемнадцатое", "девятнадцатое", "двадцатое", "двадцать первое", "двадцать второе", "двадцать третье",
+                    "двадцать четвертое", "двадцать пятое", "двадцать шестое", "двадцать седьмое", "двадцать восьмое",
+                    "двадцать девятое", "тридцатое", "тридцать первое"
+                ];
+
+                const months = [
+                    "января", "февраля", "марта", "апреля", "мая", "июня",
+                    "июля", "августа", "сентября", "октября", "ноября", "декабря"
+                ];
+
+                const day = days[this.getDate() - 1];
+                const month = months[this.getMonth()];
+                return `${day} ${month}`;
+            }
+
+            isFutureDate() {
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+                const targetDate = new Date(this);
+                targetDate.setHours(0, 0, 0, 0);
+                return targetDate >= now;
+            }
+
+            static isLeapYear(year) {
+                return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            }
+
+            getNextDate() {
+                const nextDate = new Date(this);
+                nextDate.setDate(this.getDate() + 1);
+                return new ExtendedDate(nextDate.getFullYear(), nextDate.getMonth(), nextDate.getDate());
+            }
+        }
+
+        const myDate = new ExtendedDate(2024, 6, 16);
+
+        function addParagraph(text) {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = text;
+            document.body.appendChild(paragraph);
+        }
+
+        addParagraph(`Дата: ${myDate.getDateAsText()}`);
+        addParagraph(`Будущая дата: ${myDate.isFutureDate()}`);
+        addParagraph(`Високосный год: ${ExtendedDate.isLeapYear(myDate.getFullYear())}`);
+        addParagraph(`Следующая дата: ${myDate.getNextDate().getDateAsText()}`);
+    </script>
+</body>
+</html>

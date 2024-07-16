@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_3</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        class Employee {
+            constructor(name, position, department) {
+                this.name = name;
+                this.position = position;
+                this.department = department;
+            }
+        }
+
+        class EmpTable {
+            constructor(employees) {
+                this.employees = employees;
+            }
+
+            getHtml() {
+                let html = '<table>';
+                html += '<tr><th>Имя</th><th>Должность</th><th>Отдел</th></tr>';
+                for (const employee of this.employees) {
+                    html += `<tr><td>${employee.name}</td><td>${employee.position}</td><td>${employee.department}</td></tr>`;
+                }
+                html += '</table>';
+                return html;
+            }
+        }
+
+        const employees = [
+            new Employee('Иван Иванов', 'Менеджер', 'Отдел продаж'),
+            new Employee('Петр Петров', 'Аналитик', 'Финансовый отдел'),
+            new Employee('Сергей Сергеев', 'Кассир', 'Отдел кассы')
+        ];
+
+        const empTable = new EmpTable(employees);
+
+        document.body.innerHTML += empTable.getHtml();
+    </script>
+</body>
+</html>

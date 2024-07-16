@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task_1</title>
+    <script>
+        class Marker {
+            constructor(color, amountInk) {
+                this.color = color;
+                this.amountInk = amountInk;
+            }
+
+            print(text) {
+                let inkUsage = 0.5;
+                let remainingInk = this.amountInk;
+                let output = "";
+
+                for (let i = 0; i < text.length; i++) {
+                    if (remainingInk <= 0) {
+                        break;
+                    }
+
+                    if (text[i] !== " ") {
+                        remainingInk -= inkUsage;
+                    }
+
+                    if (remainingInk >= 0) {
+                        output += text[i];
+                    }
+                }
+
+                if (remainingInk <= 0) {
+                    output += `<div style="color: black;">Чернила закончились!</div>`;
+                }
+
+                document.write(`<div style="color: ${this.color};">${output}</div>`);
+                this.amountInk = remainingInk;
+            }
+        }
+
+        class RefillingMarker extends Marker {
+            refill(amountRefill) {
+                if (amountRefill > 100 || amountRefill < 1 || isNaN(amountRefill)) {
+                    alert("Некорректное значение");
+                    return false;
+                }
+                this.amountInk = parseFloat(amountRefill);
+                return true;
+            }
+        }
+
+        let text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium odio dolores iusto ut dolorum! Nihil dolores rerum eaque. A recusandae esse id quae error commodi qui eveniet minus consectetur consequatur.";
+
+        let marker = new RefillingMarker("#FF6347", 100);
+        marker.print(text);
+
+        let amountRefill = prompt("Насколько процентов заправить маркер чернилами?");
+        if (amountRefill && marker.refill(amountRefill)) {
+            marker.print(text);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
