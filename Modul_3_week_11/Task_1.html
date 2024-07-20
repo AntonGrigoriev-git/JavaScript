@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random number generation</title>
+    <style>
+        body {
+            text-align: center;
+            padding-top: 10%;
+            background-color: bisque;
+        }
+    </style>
+
+    <script>
+        function getRandomNumber() {
+            let p = document.getElementById("randomNumber");
+            p.innerHTML = Math.floor(100 * Math.random());
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <p>Random number:</p>
+        <h2 id="randomNumber">--</h2>
+    </div>
+    <input type="button" value="Generate random number" onclick="getRandomNumber()"/>
+</body>
+</html>

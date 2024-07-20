@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News list</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .news-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .news-item h2 {
+            margin-top: 0;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="news-container">
+        <div class="news-item">
+            <h2>What is Provident?</h2>
+            <p>Provident, earum pariatur ullam expedita, itaque accusantium dignissimos ipsa, cupiditate fugit repellendus eaque. Asperiores qui vitae inventore iure ipsum eveniet voluptate labore.</p>
+            <button class="remove-btn">Удалить</button>
+        </div>
+
+        <div class="news-item">
+            <h2>Why do we use it?</h2>
+            <p>Reprehenderit placeat, aspernatur quo dolore rem labore recusandae? Maxime ipsum tempora nemo error officiis eum magnam itaque velit totam aperiam! Fugit, porro?</p>
+            <button class="remove-btn">Удалить</button>
+        </div>
+
+        <div class="news-item">
+            <h2>Where does it come from?</h2>
+            <p>Non dignissimos quam officia consequuntur architecto impedit magni inventore ratione rerum assumenda expedita distinctio corrupti tempore corporis facilis aspernatur amet, aperiam tempora.</p>
+            <button class="remove-btn">Удалить</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const removeButtons = document.querySelectorAll('.remove-btn');
+
+            removeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const newsItem = event.target.closest('.news-item');
+                    newsItem.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
