@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User information form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        form, table {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: beige;
+            margin-top: 20px;
+        }
+
+        input[type="text"], input[type="date"], input[type="submit"], select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        label, input[type="radio"] {
+            margin: 10px 0;
+        }
+
+        td, th {
+            padding: 10px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+        }
+
+        caption { 
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="userForm">
+        <label for="firstname">Firstname:</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <label for="lastname">Lastname:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday" required>
+
+        <label>Gender:</label>
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female" required> Female</label>
+        
+        <label for="country"><br/>Country:</label>
+        <select id="country" name="country" required>
+            <option value="Russia">Russia</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+        </select>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label>Skills:</label>
+        <label><input type="checkbox" name="skills" value="HTML"> HTML</label>
+        <label><input type="checkbox" name="skills" value="CSS"> CSS</label>
+        <label><input type="checkbox" name="skills" value="JS"> JS</label>
+        <label><input type="checkbox" name="skills" value="PHP"> PHP</label>
+        <label><input type="checkbox" name="skills" value="C++"> C++</label>
+        <label><input type="checkbox" name="skills" value="JAVA"> JAVA</label>
+        <label><input type="checkbox" name="skills" value="C#"> C#</label>
+
+        <input type="submit" value="Save">
+    </form>
+
+    <table id="resultTable" style="display: none;">
+        <caption>Result:</caption>
+        <tr>
+            <th>Firstname</th>
+            <td id="resultFirstname"></td>
+        </tr>
+        <tr>
+            <th>Lastname</th>
+            <td id="resultLastname"></td>
+        </tr>
+        <tr>
+            <th>Birthday</th>
+            <td id="resultBirthday"></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td id="resultGender"></td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td id="resultCountry"></td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td id="resultCity"></td>
+        </tr>
+        <tr>
+            <th>Skills</th>
+            <td id="resultSkills"></td>
+        </tr>
+    </table>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let firstname = document.getElementById('firstname').value;
+            let lastname = document.getElementById('lastname').value;
+            let birthday = document.getElementById('birthday').value;
+            let gender = document.querySelector('input[name="gender"]:checked').value;
+            let country = document.getElementById('country').value;
+            let city = document.getElementById('city').value;
+            
+            let date = new Date(birthday);
+            let formattedDate = date.getDate().toString().padStart(2, '0') + '/' + 
+                                (date.getMonth() + 1).toString().padStart(2, '0') + '/' + 
+                                date.getFullYear();
+
+            let skills = Array.from(document.querySelectorAll('input[name="skills"]:checked'))
+                              .map(checkbox => checkbox.value)
+                              .join(', ');
+
+            document.getElementById('resultFirstname').innerText = firstname;
+            document.getElementById('resultLastname').innerText = lastname;
+            document.getElementById('resultBirthday').innerText = formattedDate;
+            document.getElementById('resultGender').innerText = gender;
+            document.getElementById('resultCountry').innerText = country;
+            document.getElementById('resultCity').innerText = city;
+            document.getElementById('resultSkills').innerText = skills;
+
+            document.getElementById('resultTable').style.display = 'table';
+        });
+    </script>
+</body>
+</html>

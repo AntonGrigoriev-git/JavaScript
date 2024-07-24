@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating a test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: beige;
+            padding: 20px;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .questions-list {
+            margin-bottom: 20px;
+            padding: 10px;
+            padding-left: 0;
+        }
+
+        .question-item {
+            margin-bottom: 20px;
+        }
+
+        .question-item .question {
+            text-decoration: underline;
+        }
+
+        .form-field {
+            margin-bottom: 10px;
+        }
+
+        .form-field input[type="text"] {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .form-field input[type="submit"] {
+            width: 102%;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .form-title, .questions-title {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="questions-list" id="questionsList">
+            <strong class="questions-title">All questions:</strong>
+        </div>
+        <hr>
+        <form id="questionForm">
+            <strong class="form-title">Add new question:</strong>
+            <div class="form-field">
+                <label for="newQuestion">Question:</label>
+                <input type="text" id="newQuestion" required>
+            </div>
+            <div class="form-field">
+                <label for="correctAnswer">Correct answer:</label>
+                <input type="text" id="correctAnswer" required>
+            </div>
+            <div class="form-field">
+                <label for="wrongAnswer">Wrong answer:</label>
+                <input type="text" id="wrongAnswer" required>
+            </div>
+            <div class="form-field">
+                <input type="submit" value="Add">
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('questionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let newQuestion = document.getElementById('newQuestion').value;
+            let correctAnswer = document.getElementById('correctAnswer').value;
+            let wrongAnswer = document.getElementById('wrongAnswer').value;
+            
+            let questionItem = document.createElement('div');
+            questionItem.className = 'question-item';
+            questionItem.innerHTML = `<div class="question">${newQuestion}</div>
+                                      <div>Correct answer: ${correctAnswer}</div>
+                                      <div>Wrong answer: ${wrongAnswer}</div>`;
+            
+            document.getElementById('questionsList').appendChild(questionItem);
+            
+            document.getElementById('questionForm').reset();
+        });
+    </script>
+</body>
+</html>

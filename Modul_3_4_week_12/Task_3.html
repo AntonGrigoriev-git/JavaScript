@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like</title>
+    <style>
+        #button {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            width: 200px;
+            height: 40px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="button"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-like.png" 
+            alt="like icon"/>Like 0</button>
+
+    <script>
+        let likeCount = 0;
+        
+        let button = document.getElementById("button");
+        button.addEventListener("click", increaseCount);
+
+        function increaseCount(event) {
+            likeCount++;
+            button.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-like.png" 
+                                 alt="like icon"/>Like ${likeCount}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation menu</title>
+    <style>
+        .navbar {
+            background-color: #336699;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: #275685;
+        }
+
+        .dropdown {
+            float: left;
+        }
+
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #336699;
+            min-width: 100px;
+        }
+
+        .dropdown-content a {
+            float: none;
+            text-align: left;
+        }
+        
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown()">Categories</button>
+            <div class="dropdown-content" id="dropdown">
+                <a href="#dresses">Dresses</a>
+                <a href="#shirts">Shirts</a>
+                <a href="#jeans">Jeans</a>
+                <a href="#shoes">Shoes</a>
+            </div>
+        </div> 
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                let dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

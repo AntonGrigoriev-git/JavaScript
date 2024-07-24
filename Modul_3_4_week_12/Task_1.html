@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        table, td, th {
+            border-collapse: collapse;
+            border: 2px solid black;
+            background-color: bisque;
+            width: 30%;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Company</th>
+            </tr>
+            <tr>
+                <td>Bill</td>
+                <td>Gates</td>
+                <td>Microsoft</td>
+            </tr>
+            <tr>
+                <td>Timothy</td>
+                <td>Cook</td>
+                <td>Apple</td>
+            </tr>
+            <tr>
+                <td>Larry</td>
+                <td>Page</td>
+                <td>Google</td>
+            </tr>
+            <tr>
+                <td>Mark</td>
+                <td>Zuckerberg</td>
+                <td>Facebook</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        let tdList = document.querySelectorAll("td");
+
+        for (let td of tdList) {
+            td.setAttribute('data-original-background', getComputedStyle(td).backgroundColor);
+            td.addEventListener("mouseover", changeBackground);
+            td.addEventListener("mouseout", changeBackground);
+        }
+
+        function changeBackground(event) {
+            let cell = event.target;
+            if (event.type === "mouseover") {
+                cell.style.backgroundColor = "orange";
+            } else {
+                cell.style.backgroundColor = cell.getAttribute('data-original-background');
+            }
+        }
+    </script>
+</body>
+</html>

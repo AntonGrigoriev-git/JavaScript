@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .article {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            background-color: #f1620f;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="article">
+        <h1>Заголовок статьи</h1>
+        <p>Содержимое статьи...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, libero eget vehicula elementum, felis erat vehicula magna, nec porttitor elit ex in magna. Curabitur eget velit vel lectus efficitur facilisis. Aenean non velit ac lorem commodo pellentesque. Nam vehicula ultricies lacus, quis egestas justo. Proin sit amet feugiat nisl. Donec congue turpis quis turpis imperdiet, at ullamcorper libero pharetra. Mauris dapibus gravida ligula, ut volutpat libero fringilla sit amet. Curabitur vitae fermentum lorem, nec bibendum massa. Proin vel augue eget sapien convallis pharetra. </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, libero eget vehicula elementum, felis erat vehicula magna, nec porttitor elit ex in magna. Curabitur eget velit vel lectus efficitur facilisis. Aenean non velit ac lorem commodo pellentesque. Nam vehicula ultricies lacus, quis egestas justo. Proin sit amet feugiat nisl. Donec congue turpis quis turpis imperdiet, at ullamcorper libero pharetra. Mauris dapibus gravida ligula, ut volutpat libero fringilla sit amet. Curabitur vitae fermentum lorem, nec bibendum massa. Proin vel augue eget sapien convallis pharetra. </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur venenatis, libero eget vehicula elementum, felis erat vehicula magna, nec porttitor элит ex in magna. Curabitur eget velit vel lectus efficitur facilisis. Aenean non velit ac lorem commodo pellentesque. Nam vehicula ultricies lacus, quis egestas justo. Proin sit amet feugiat nisl. Donec congue turpis quis turpis imperdiet, at ullamcorper libero pharetra. Mauris dapibus gravida ligula, ut volutpat libero fringilla sit amet. Curabitur vitae fermentum lorem, nec bibendum massa. Proin vel augue eget sapien convallis pharetra. </p>
+    </div>
+
+    <button onclick="topFunction()" id="scrollTopBtn" title="Up">&#8679;</button>
+
+    <script>
+        let myButton = document.getElementById("scrollTopBtn");
+
+        window.onscroll = function() {
+            scrollFunction();
+        
+            function scrollFunction() {
+                if (document.documentElement.scrollTop > 100) {
+                    myButton.style.display = "block";
+                } else {
+                    myButton.style.display = "none";
+                }
+            }
+        };
+
+        function topFunction() {
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+</html>

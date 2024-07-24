@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-weight: bold;
+        }
+
+        form {
+            width: 65%;
+            margin: auto;
+            padding: 20px;
+            background-color: beige;
+        }
+
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        #signIn {
+            font-weight: normal;
+            margin-top: 20px;
+        }
+
+        a {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            color: blue;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="loginForm" action="" method="get">
+        <div>
+            <label for="login">Your login:<br/>
+                <input type="text" id="login" name="login" required>
+            </label>
+        </div>
+
+        <div>
+            <label for="password">Your password:<br/>
+                <input type="password" id="password" name="password" required>
+            </label>
+        </div>
+
+        <div>
+            <label for="remember">Remember me:<br/>
+                <input type="checkbox" id="remember">
+            </label>
+        </div>
+
+        <input type="submit" value="Sign in" id="signIn"/>
+        <a href="#">Forgot password?</a>
+        
+        <div id="message"></div>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let login = document.querySelector("#login").value;
+            let checkbox = document.querySelector("#remember").checked;
+            let rememberStatus = checkbox ? "запомнил" : "не запомнил";
+            document.getElementById('message').innerText = `Привет, ${login}! Я тебя ${rememberStatus}.`;
+        });
+    </script>
+</body>
+</html>
