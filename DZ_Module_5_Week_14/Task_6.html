@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train tickets booking</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        .seat-checkbox-wrapper {
+            display: none;
+            flex-wrap: wrap;
+            max-width: 42.2%;
+            gap: 1px;
+            border: 1px solid;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .seat-group {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid;
+            width: 80px;
+        }
+
+        .seat-group > div {
+            flex: 50%;
+            display: flex;
+            align-items: center;
+        }
+
+        .booking-container {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .total-price {
+            display: none;
+        }
+
+        .my-tickets {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .my-tickets table {
+            width: 44%;
+            border-collapse: collapse;
+        }
+
+        .my-tickets th, .my-tickets td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <label for="direction">Direction:</label>
+        <select name="direction" id="direction"></select>
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date">
+        <button id="search-button">Search</button>
+    </p>
+
+    <div class="seat-checkbox-wrapper" id="seat-checkbox-wrapper"></div>
+    <div class="booking-container" id="booking-container">
+        <button id="book-button">Book</button>
+        <span class="total-price" id="total-price"></span>
+    </div>
+
+    <div class="my-tickets" id="my-tickets">
+        <p><strong>My tickets:</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Direction</th>
+                    <th>Date</th>
+                    <th>Seat</th>
+                </tr>
+            </thead>
+            <tbody id="ticket-list"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const directions = ["Novosibirsk - Moscow", "Moscow - Sochi", "Sochi - Novosibirsk"];
+        const seatNumbers = [];
+        for (let i = 1; i <= 28; i++) {
+            seatNumbers.push(i);
+        }
+        const TICKET_PRICE = 62;
+
+        const directionSelect = document.getElementById('direction');
+        const seatCheckboxWrapper = document.getElementById('seat-checkbox-wrapper');
+        const bookingContainer = document.getElementById('booking-container'); 
+
+        directions.forEach(direction => {
+            const option = document.createElement("option");
+            option.textContent = direction;
+            directionSelect.appendChild(option);
+        });
+
+        for (let i = 0; i < seatNumbers.length; i += 4) {
+            const seatGroupDiv = document.createElement("div");
+            seatGroupDiv.classList.add('seat-group');
+
+            const order = [0, 2, 1, 3];
+            for (let j = 0; j < 4; j++) {
+                if (seatNumbers[i + order[j]] !== undefined) {
+                    const seatDiv = document.createElement("div");
+                    seatDiv.innerHTML = `<input type="checkbox" class="seat-checkbox" id="seat${seatNumbers[i + order[j]]}" name="seat${seatNumbers[i + order[j]]}">
+                    <label for="seat${seatNumbers[i + order[j]]}">${seatNumbers[i + order[j]]}</label>`;
+                    seatGroupDiv.appendChild(seatDiv);
+                }
+            }
+
+            seatCheckboxWrapper.appendChild(seatGroupDiv);
+        }
+
+        const seatCheckboxes = document.querySelectorAll('.seat-checkbox');
+        const totalPriceElement = document.getElementById('total-price');
+        const bookButton = document.getElementById('book-button');
+        const myTicketsDiv = document.getElementById('my-tickets');
+        const ticketList = document.getElementById('ticket-list');
+        const searchButton = document.getElementById('search-button');
+
+        searchButton.addEventListener('click', handleSearch);
+        bookButton.addEventListener('click', handleBooking);
+
+        seatCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateTotalPrice);
+        });
+
+        function updateTotalPrice() {
+            let totalPrice = 0;
+            seatCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    totalPrice += TICKET_PRICE;
+                }
+            });
+
+            if (totalPrice > 0) {
+                totalPriceElement.style.display = 'inline';
+                totalPriceElement.textContent = `Total price: ${totalPrice}$`;
+            } else {
+                totalPriceElement.style.display = 'none';
+            }
+        }
+
+        function handleSearch() {
+            const direction = directionSelect.value;
+            const date = document.getElementById('date').value;
+
+            if (direction && date) {
+                seatCheckboxWrapper.style.display = 'flex';
+                bookingContainer.style.display = 'flex';
+            } else {
+                alert("Please select a direction and date.");
+            }
+        }
+
+        function handleBooking() {
+            const direction = directionSelect.value;
+            const date = document.getElementById('date').value;
+            const checkedSeats = Array.from(seatCheckboxes).filter(checkbox => checkbox.checked);
+
+            if (checkedSeats.length > 0 && date) {
+                myTicketsDiv.style.display = 'block';
+                checkedSeats.forEach(checkbox => {
+                    const seatNumber = checkbox.nextElementSibling.textContent;
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${direction}</td>
+                                     <td>${formatDate(date)}</td>
+                                     <td>${seatNumber}</td>`;
+                    ticketList.appendChild(row);
+
+                    checkbox.checked = false;
+                });
+                updateTotalPrice();
+            }
+        }
+
+        function formatDate(date) {
+            const [year, month, day] = date.split('-');
+            return `${day}.${month}.${year}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            display: flex;
+            padding: 20px;
+        }
+
+        .book-container {
+            display: flex;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .form-container {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group label {
+            margin-right: 10px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            box-sizing: border-box;
+        }
+
+        .button-buy {
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button-group {
+            width: 200px;
+        }
+
+        .button-group img {
+            width: 100%;
+            max-height: 250px;
+        }
+
+        .button-group .caption {
+            height: 80px;
+            min-height: 110px;
+        }
+
+        .select-button {
+            margin-top: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .form-group label {
+            width: 80px;
+            height: 43px;
+        }
+
+        .price {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .caption {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="button-group" data-title="Learning JavaScript" data-author="Ethan Brown" data-price="16$">
+            <img src="https://m.media-amazon.com/images/I/91dOB9d+zsL._SL1500_.jpg" alt="Learning JavaScript">
+            <div class="caption">
+                <strong>Learning JavaScript: JavaScript Essentials for Modern Application Development</strong><br>
+                Ethan Brown<br>
+                <p class="price">16$</p>
+            </div>
+            <button class="select-button">Select</button>
+        </div>
+        <div class="button-group" data-title="You Don't Know JS" data-author="Kyle Simpson" data-price="14$">
+            <img src="https://m.media-amazon.com/images/I/81zWsOMWE4L._SL1500_.jpg" alt="You Don't Know JS">
+            <div class="caption">
+                <strong>You Don't Know JS: Scope & Closures:</strong><br>
+                Kyle Simpson<br>
+                <p class="price">20$</p>
+            </div>
+            <button class="select-button">Select</button>
+        </div>
+        <div class="button-group" data-title="JavaScript & jQuery" data-author="Jon Duckett" data-price="20$">
+            <img src="https://m.media-amazon.com/images/I/61u7pEHMZUL._SL1500_.jpg" alt="JavaScript & jQuery">
+            <div class="caption">
+                <strong>JavaScript & jQuery: Interactive Front-End Web Development</strong><br>
+                Jon Duckett<br>
+                <p class="price">22$</p>
+            </div>
+            <button class="select-button">Select</button>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <form action="" method="post" id="order-form">
+            <div class="form-group">
+                <label for="book">Book:</label>
+                <input type="text" name="book" id="book">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="text" name="quantity" id="quantity">
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="form-group">
+                <label for="address">Delivery address:</label>
+                <textarea name="address" id="address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="date">Delivery date:</label>
+                <input type="text" name="date" id="date">
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea name="comment" id="comment"></textarea>
+            </div>
+            <button class="button-buy">Buy</button>
+        </form>
+    </div>
+
+    <div class="thank-you-message" id="thank-you-message" style="display: none;"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let buttons = document.querySelectorAll('.select-button');
+            let form = document.getElementById('order-form');
+            let thankYouMessage = document.getElementById('thank-you-message');
+            
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    let group = button.closest('.button-group');
+                    let title = group.dataset.title;
+                    let inputBook = document.getElementById('book');
+                    inputBook.value = title;
+                });
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let book = document.getElementById('book').value;
+                let name = document.getElementById('name').value;
+                let address = document.getElementById('address').value;
+                let date = document.getElementById('date').value;
+
+                thankYouMessage.innerHTML = `${name}, thanks for the order!<br><br>
+                                            Book "${book}" will be delivered on ${date} to ${address}.`;
+                thankYouMessage.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

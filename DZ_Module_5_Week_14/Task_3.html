@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylized text</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        
+        textarea {
+            width: 370px;
+            height: 100px;
+        }
+
+        div {
+            padding: 10px 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        <div>
+            <label><input type="checkbox" name="style" id="bold">Bold</label>
+            <label><input type="checkbox" name="style" id="underline">Underline</label>
+            <label><input type="checkbox" name="style" id="italics">Italics</label>
+            <label><input type="radio" name="align" id="left">Left</label>
+            <label><input type="radio" name="align" id="right">Right</label>
+            <label><input type="radio" name="align" id="justify">Justify</label>
+        </div>
+
+        <textarea name="message" id="message"></textarea>
+
+        <div id="result" style="display: none;">
+            <p><strong>Result:</strong></p>
+            <textarea name="output" id="output"></textarea>
+        </div>
+    </form>
+
+    <script>
+        let boldCheckbox = document.getElementById("bold");
+        let underlineCheckbox = document.getElementById("underline");
+        let italicsCheckbox = document.getElementById("italics");
+        let leftRadio = document.getElementById("left");
+        let rightRadio = document.getElementById("right");
+        let justifyRadio = document.getElementById("justify");
+
+        let container = document.createElement("div");
+        container.className = "container";
+
+        let button = document.createElement("button");
+        button.innerHTML = "Show text";
+        button.style.width = "375px";
+
+        button.addEventListener("click", showText);
+        container.appendChild(button);
+        document.body.appendChild(container);
+
+        function applyStyles() {
+            let styles = "";
+            if (boldCheckbox.checked) {
+                styles += "font-weight: bold;";
+            }
+            if (underlineCheckbox.checked) {
+                styles += "text-decoration: underline;";
+            }
+            if (italicsCheckbox.checked) {
+                styles += "font-style: italic;";
+            }
+
+            if (leftRadio.checked) {
+                styles += "text-align: left;";
+            } else if (rightRadio.checked) {
+                styles += "text-align: right;";
+            } else if (justifyRadio.checked) {
+                styles += "text-align: justify;";
+            }
+
+            return styles;
+        }
+
+        function showText(event) {
+            event.preventDefault();
+            let message = document.getElementById("message").value;
+            let output = document.getElementById("output");
+            let result = document.getElementById("result");
+
+            output.value = message;
+            output.style = applyStyles();
+            result.style.display = "block";
+        }
+
+        boldCheckbox.addEventListener("change", applyStyles);
+        underlineCheckbox.addEventListener("change", applyStyles);
+        italicsCheckbox.addEventListener("change", applyStyles);
+        leftRadio.addEventListener("change", applyStyles);
+        rightRadio.addEventListener("change", applyStyles);
+        justifyRadio.addEventListener("change", applyStyles);
+    </script>
+</body>
+</html>

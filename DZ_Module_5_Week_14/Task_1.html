@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: antiquewhite;
+        }
+
+        .bordered {
+            border: 1px solid #808080;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        form {
+            padding: 5px;
+        }
+
+        .message-header {
+            border-bottom: 1px solid #808080;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .message-date {
+            float: right;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="bordered">
+            <div class="message-header">
+                Name <span class="message-date">15:22:00 27.07.2024</span>
+            </div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Recusandae et eum quos, expedita quod harum itaque quibusdam 
+            perferendis atque facere fugit sit numquam veritatis nostrum 
+            accusantium totam earum placeat alias.
+        </div>
+    </div>
+
+    <form action="" method="post">
+        <h3>Add new message:</h3>
+        <div>
+            <label for="name">Your name:</label>
+            <input type="text" name="name" id="name" />
+        </div>
+        <div>
+            <label for="message">Your message:</label>
+            <textarea name="message" id="message"></textarea>
+        </div>
+        <input type="submit" value="Send" />
+    </form>
+
+    <script>
+        let form = document.forms[0];
+        form.addEventListener('submit', saveMessage);
+
+        function saveMessage(event) {
+            let now = luxon.DateTime.now().toFormat("HH:mm:ss dd.MM.yyyy");
+            event.preventDefault();
+            let userName = document.getElementById("name").value;
+            let message = document.getElementById("message").value;
+
+            let header = document.createElement("div");
+            header.innerHTML = `${userName} <span class="message-date">${now}</span>`;
+            header.className = "message-header";
+
+            let body = document.createElement("div");
+            body.innerHTML = message;
+            body.className = "message-box";
+
+            let post = document.createElement("div");
+            post.className = "bordered";
+            post.appendChild(header);
+            post.appendChild(body);
+            document.body.insertBefore(post, form);
+            form.reset();
+        }
+    </script>
+</body>
+</html>

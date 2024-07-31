@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is present</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            padding: 40px 500px;
+        }
+
+        select {
+            width: 70px;
+        }
+
+        label + select {
+            margin-right: 20px;
+        }
+
+        input {
+            width: 290px;
+        }
+
+        .save-button {
+            cursor: pointer;
+            width: 350px;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <label for="group">Group:</label>
+        <select name="group" id="group"></select>
+        <label for="lesson">Lesson:</label>
+        <select name="lesson" id="lesson"></select>
+        <button id="select-button">Select</button>
+    </p>
+
+    <div id="attendanceForm" class="hidden">
+        <p>
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic"/>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Is present</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+
+        <button class="save-button" id="save">Save</button>
+        <div id="saved-data-container"></div>
+    </div>
+
+    <script>
+        let groups = ["Group 1", "Group 2", "Group 3"];
+        let lessons = [1, 2, 3];
+        let names = ["Tom", "Jerry", "Adam", "Eve"];
+        let tableBody = document.getElementById("table-body");
+        let savedDataContainer = document.getElementById("saved-data-container");
+
+        function listNames() {
+            tableBody.innerHTML = "";
+            names.forEach(function(name) {
+                let row = document.createElement("tr");
+
+                let nameCell = document.createElement("td");
+                nameCell.textContent = name;
+                row.appendChild(nameCell);
+
+                let checkboxCell = document.createElement("td");
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkboxCell.appendChild(checkbox);
+                row.appendChild(checkboxCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        let groupSelect = document.getElementById("group");
+        let lessonSelect = document.getElementById("lesson");
+
+        groups.forEach(group => {
+            let option = document.createElement("option");
+            option.textContent = group;
+            groupSelect.appendChild(option);
+        });
+
+        lessons.forEach(lesson => {
+            let option = document.createElement("option");
+            option.textContent = lesson;
+            lessonSelect.appendChild(option);
+        });
+
+        document.getElementById("select-button").addEventListener("click", function() {
+            document.getElementById("attendanceForm").classList.remove("hidden");
+            listNames();
+        });
+
+        document.getElementById("save").addEventListener("click", function() {
+            let group = groupSelect.value;
+            let lesson = lessonSelect.value;
+            let topic = document.getElementById("topic").value;
+
+            let tableRows = document.querySelectorAll("tbody tr");
+            let data = {
+                group: group,
+                lesson: lesson,
+                topic: topic,
+                attendance: []
+            };
+
+            tableRows.forEach(function(row) {
+                let name = row.cells[0].textContent;
+                let present = row.cells[1].querySelector("input[type='checkbox']").checked;
+                data.attendance.push({ name: name, present: present });
+            });
+
+            let allData = JSON.parse(localStorage.getItem("attendanceData")) || [];
+            allData.push(data);
+            localStorage.setItem("attendanceData", JSON.stringify(allData));
+            displaySavedData();
+        });
+
+        function displaySavedData() {
+            let allData = JSON.parse(localStorage.getItem("attendanceData")) || [];
+            savedDataContainer.innerHTML = "";
+            allData.forEach(item => {
+                let dataString = `${item.group}, Lesson ${item.lesson}, Topic: ${item.topic}\n`;
+                item.attendance.forEach(attendee => {
+                    dataString += `${attendee.name}: ${attendee.present ? "present" : ""}\n`;
+                });
+
+                let pre = document.createElement("pre");
+                pre.textContent = dataString;
+                savedDataContainer.appendChild(pre);
+            });
+        }
+
+        displaySavedData();
+
+        setTimeout(function(){
+            localStorage.removeItem("attendanceData");
+            displaySavedData();
+        }, 60000);
+    </script>
+</body>
+</html>
