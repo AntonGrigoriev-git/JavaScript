@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The catalog of copywriters</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        
+        h4 {
+            text-align: center;
+        }
+
+        .userDiv {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        table {
+            width: 50%;
+            table-layout: fixed;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        tr, td {
+            border: 1px solid black;
+        }
+
+        td:first-child {
+            width: 100px;
+        }
+
+        td:nth-child(2) {
+            width: 200px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let request = new XMLHttpRequest();
+        let users;
+
+        request.open("GET", "https://jsonplaceholder.typicode.com/users");
+        request.send();
+
+        request.onload = function () {
+            users = JSON.parse(request.response);
+            let usersDiv = document.getElementById("users");
+
+            for (let i = 0; i < users.length; i++) {
+                const user = users[i];
+                let userDiv = document.createElement("div");
+                userDiv.innerText = user.name;
+                userDiv.className = "userDiv";
+
+                userDiv.onclick = function() {
+                    const addressString = convertAddressToString(user.address);
+
+                    document.getElementById("user-info").innerHTML = 
+                    `<table>
+                        <tr>
+                            <td>Name:</td>
+                            <td>${user.name}</td>
+                        </tr>
+                        <tr>
+                            <td>Username:</td>
+                            <td>${user.username}</td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td>${addressString}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>${user.email}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td>${user.phone}</td>
+                        </tr>
+                        <tr>
+                            <td>Website:</td>
+                            <td>${user.website}</td>
+                        </tr>
+                    </table>`;
+
+                    document.getElementById("user-info-title").classList.remove("hidden");
+
+                    let button = document.createElement("button");
+                    button.innerText = "Show posts";
+                    button.onclick = function () {
+                        document.getElementById("user-posts").innerHTML = "";
+
+                        let postsRequest = new XMLHttpRequest();
+                        postsRequest.open("GET", `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
+                        postsRequest.send();
+
+                        postsRequest.onload = function () {
+                            let posts = JSON.parse(postsRequest.response);
+                            for (let i = 0; i < posts.length; i++) {
+                                let postDiv = document.createElement("div");
+                                postDiv.innerHTML = `<h5>${posts[i].title}</h5><p>${posts[i].body}</p>`;
+
+                                document.getElementById("user-posts").appendChild(postDiv);
+                            }
+                            document.getElementById("user-posts-title").classList.remove("hidden");
+                        }
+                    }
+
+                    document.getElementById("user-info").appendChild(button);
+                }
+
+                usersDiv.appendChild(userDiv);
+            }
+        }
+
+        function convertAddressToString(address) {
+            const city = address.city;
+            const street = address.street;
+            return `${city}, ${street}`;
+        }
+    </script>
+
+    <h4>All users:</h4>
+    <div id="users"></div>
+
+    <h4 id="user-info-title" class="hidden">User info:</h4>
+    <div id="user-info"></div>
+
+    <h4 id="user-posts-title" class="hidden">User's posts:</h4>
+    <div id="user-posts"></div>
+    
+</body>
+</html>

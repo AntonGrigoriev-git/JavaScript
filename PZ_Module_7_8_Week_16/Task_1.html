@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON formatter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: antiquewhite;
+        }
+        .container {
+            display: flex;
+            padding: 30px;
+        }
+        .container div {
+            margin: 0 10px;
+        }
+        textarea {
+            width: 300px;
+            height: 300px;
+        }
+        .arrow-button {
+            border: none;
+            background: none;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <label for="input-json"><strong>Enter JSON data:</strong></label><br>
+            <textarea id="input-json"></textarea>
+        </div>
+        <div>
+            <button class="arrow-button" onclick="formatJSON()">
+                &#9654;
+            </button>
+        </div>
+        <div>
+            <label for="output-json"><strong>Formatted JSON data:</strong></label><br>
+            <textarea id="output-json" readonly></textarea>
+        </div>
+    </div>
+    
+    <script>
+        function formatJSON() {
+            const input = document.getElementById('input-json').value;
+            try {
+                const json = JSON.parse(input);
+                const formattedJSON = JSON.stringify(json, null, 4);
+                document.getElementById('output-json').value = formattedJSON;
+            } catch (e) {
+                document.getElementById('output-json').value = 'Format error';
+            }
+        }
+    </script>
+</body>
+</html>
