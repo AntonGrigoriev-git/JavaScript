@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+        }
+    
+        .star {
+            font-size: 2em;
+            color: black;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+    
+        .star.orange {
+            color: orange;
+        }
+    
+        .star-rating label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+      </style>
+</head>
+<body>
+    <div class="star-rating">
+        <label for="rating">Star Rating:</label>
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.star').on('click', function() {
+                let rating = $(this).data('value');
+
+                $('.star').each(function() {
+                if ($(this).data('value') <= rating) {
+                    $(this).addClass('orange');
+                } else {
+                    $(this).removeClass('orange');
+                }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

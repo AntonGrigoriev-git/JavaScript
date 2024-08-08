@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Menu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+
+        #sideMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50px;
+            background-color: #4a4a4a;
+        }
+
+        #sideMenu .menu-header {
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .menu-item {
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 15px 10px;
+        }
+
+        #sideMenu img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .menu-item span {
+            display: none;
+        }
+
+        #sideMenu.open .menu-item span {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div id="sideMenu">
+        <div class="menu-header">MENU</div>
+        <div class="menu-item">
+            <img src="edit.png" alt="edit">
+            <span>EDIT</span>
+        </div>
+        <div class="menu-item">
+            <img src="favorites.png" alt="favorites">
+            <span>FAVORITES</span>
+        </div>
+        <div class="menu-item">
+            <img src="history.png" alt="history">
+            <span>HISTORY</span>
+        </div>
+        <div class="menu-item">
+            <img src="security.png" alt="security">
+            <span>SECURITY</span>
+        </div>
+        <div class="menu-item">
+            <img src="settings.png" alt="settings">
+            <span>SETTINGS</span>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.menu-header').click(function() {
+                let sideMenu = $('#sideMenu');
+                if (sideMenu.hasClass('open')) {
+                    sideMenu.animate({ width: '50px' }, 300, function() {
+                        sideMenu.removeClass('open');
+                        $('.menu-item span').hide();
+                    });
+                } else {
+                    sideMenu.animate({ width: '200px' }, 300, function() {
+                        sideMenu.addClass('open');
+                        $('.menu-item span').show();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
